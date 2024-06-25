@@ -11,7 +11,7 @@ data_dict = pickle.load(open('./data.pickle', 'rb'))
 data = np.asarray(data_dict['data'])
 labels = np.asarray(data_dict['labels'])
 
-x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)
+x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True,stratify=labels)
 
 model = RandomForestClassifier()
 
@@ -23,6 +23,6 @@ score = accuracy_score(y_predict, y_test)
 
 print('{}% of samples were classified correctly !'.format(score * 100))
 
-f = open('model.pickle', 'wb')
+f = open('model.p', 'wb')
 pickle.dump({'model': model}, f)
 f.close()
