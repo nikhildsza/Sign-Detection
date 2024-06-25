@@ -44,7 +44,7 @@ for dir_ in os.listdir(DATA_DIR):
             labels.append(dir_)
 
 f = open('data.pickle','wb')
-pickle.dump({"data":data,"labels":labels})
+pickle.dump({"data":data,"labels":labels},f)
 f.close()
 #         plt.figure()
 #         plt.imshow(img_rgb)
