@@ -26,3 +26,4 @@ print('{}% of samples were classified correctly !'.format(score * 100))
 f = open('model.p', 'wb')
 pickle.dump({'model': model}, f)
 f.close()
+
