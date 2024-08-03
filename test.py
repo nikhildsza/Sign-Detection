@@ -73,7 +73,7 @@ def update_frame():
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
             mp_drawing.draw_landmarks(
-                frame,  # image to draw
+                frame_rgb,  # image to draw
                 hand_landmarks,  # model output
                 mp_hands.HAND_CONNECTIONS,  # hand connections
                 mp_drawing_styles.get_default_hand_landmarks_style(),
@@ -102,8 +102,8 @@ def update_frame():
         prediction = model.predict([np.asarray(data_aux)])
         predicted_character = labels_dict[int(prediction[0])]
 
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 4)
-        cv2.putText(frame, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3, cv2.LINE_AA)
+        cv2.rectangle(frame_rgb, (x1, y1), (x2, y2), (0, 0, 0), 4)
+        cv2.putText(frame_rgb, predicted_character, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3, cv2.LINE_AA)
         prediction_label.config(text=predicted_character)
 
         current_time = time.time()
@@ -122,7 +122,7 @@ def update_frame():
             last_detected_char = predicted_character
             last_detected_time = current_time
 
-    img = Image.fromarray(frame)
+    img = Image.fromarray(frame_rgb)
     imgtk = ImageTk.PhotoImage(image=img)
     label.imgtk = imgtk
     label.configure(image=imgtk)
